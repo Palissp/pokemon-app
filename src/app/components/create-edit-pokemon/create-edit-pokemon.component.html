@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card-title">
+    <span>{{selectedPokemon ? 'Editar' : 'Nuevo'}} Pokemon</span>
+  </div>
+  <form [formGroup]="pokemonForm">
+    <div class="row-2">
+      <div class="input-field">
+        <label for="nombre">Nombre: </label>
+        <input type="text" formControlName="nombre" id="nombre" name="nombre"/>
+      </div>
+      <div class="input-field">
+        <label for="ataque">Ataque: </label>
+        <div class="tooltip">
+          <span class="tooltiptext">{{pokemonForm.get('ataque')?.value}}</span>
+          <span>0</span>
+          <input type="range" formControlName="ataque" id="ataque" name="ataque" min="0" max="100"/>
+          <span>100</span>
+        </div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="input-field">
+        <label for="imagen">Imagen: </label>
+        <input type="text" formControlName="imagen" id="imagen" name="imagen"/>
+      </div>
+      <div class="input-field">
+        <label for="defensa">Defensa: </label>
+        <div class="tooltip">
+          <span class="tooltiptext">{{pokemonForm.get('defensa')?.value}}</span>
+          <span>0</span>
+          <input type="range" formControlName="defensa" id="defensa" name="defensa" min="0" max="100"/>
+          <span>100</span>
+        </div>
+      </div>
+    </div>
+    {{pokemonForm.value | json}}
+  </form>
+</div>
