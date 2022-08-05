@@ -1,0 +1,23 @@
+<div class="paginator">
+  <div>
+    <select class="h-8 w-16 bg-mono-10 t-body-2 text-black select-none" [(ngModel)]="initialRow"
+            (change)="changeRowPerPage($event)">
+      <option *ngFor="let row of rowsPerPage" [value]="row">{{row}}</option>
+    </select>
+  </div>
+  <div class="paginator-controls">
+    <button class="btn" (click)="previousPage()"
+            [disabled]="currentPage <= 1 || totalPagesInformation <= 1">
+      <div>
+        <span class="material-icons">navigate_before</span>
+      </div>
+    </button>
+    <div class="pages items-center bg-mono-10 px-2 rounded h-8 select-none">
+      <span class="t-body-2">{{currentPage}}/{{totalPagesInformation}}</span>
+    </div>
+    <button class="btn" (click)="nextPage()"
+            [disabled]="currentPage === totalPagesInformation || totalPagesInformation <= 1">
+      <span class="material-icons">navigate_next</span>
+    </button>
+  </div>
+</div>

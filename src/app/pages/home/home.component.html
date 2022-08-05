@@ -1,10 +1,12 @@
 <div class="home-container">
   <span><b>Listado de Pokemon</b></span>
   <div class="options_header">
-    <input class="input-search" type="text" placeholder="Buscar">
-    <button class="btn"><span class="material-icons">add</span>Nuevo</button>
+    <input class="input-search" [(ngModel)]="searchString" type="text" placeholder="Buscar">
+    <button class="btn" (click)="addPokemon()"><span class="material-icons">add</span>Nuevo</button>
   </div>
-  <app-custom-table [(arrayOfPokemons)]="arrayOfPokemons"></app-custom-table>
-  <app-create-edit-pokemon></app-create-edit-pokemon>
+  <app-custom-table [(arrayOfPokemons)]="arrayOfPokemons" (selectingPokemon)="onEditPokemon($event)" [searchString]="searchString"></app-custom-table>
+  <app-create-edit-pokemon *ngIf="showAddPokemon"
+                           (newPokemonEmmiter)="createPokemon($event)"
+                           [selectedPokemon]="selectedPokemon"></app-create-edit-pokemon>
 </div>
-<app-block-page *ngIf="true"></app-block-page>
+<app-block-page *ngIf="blockPage"></app-block-page>

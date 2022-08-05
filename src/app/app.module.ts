@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { CreateEditPokemonComponent } from './components/create-edit-pokemon/create-edit-pokemon.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PokemonService} from "./services/pokemon.service";
 import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
@@ -18,13 +18,14 @@ import {SharedModule} from "./shared/shared.module";
     CustomTableComponent,
     CreateEditPokemonComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SharedModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SharedModule,
+        FormsModule
+    ],
   providers: [PokemonService],
   bootstrap: [AppComponent]
 })

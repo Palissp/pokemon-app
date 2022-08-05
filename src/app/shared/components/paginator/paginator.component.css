@@ -1,0 +1,29 @@
+.paginator {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.paginator-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+
+btn {
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  max-height: fit-content !important;
+  max-width: fit-content !important;
+  height: fit-content;
+  outline: none;
+}

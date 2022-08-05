@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CustomEvent, Pokemon, PokemonResquest} from "../../models/pokemon";
 
 @Component({
   selector: 'app-create-edit-pokemon',
@@ -9,25 +10,53 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class CreateEditPokemonComponent implements OnInit {
   @Input()
   public selectedPokemon?: any;
+  @Output()
+  public newPokemonEmmiter: EventEmitter<CustomEvent<PokemonResquest>> = new EventEmitter<CustomEvent<PokemonResquest>>()
 
   public pokemonForm: FormGroup;
+
   constructor(private _fb: FormBuilder) {
     this.pokemonForm = this._fb.group({
-      nombre: ['', Validators.required],
-      ataque: [0, Validators.required],
-      imagen: ['', Validators.required],
-      defensa: [0, Validators.required],
+      name: ['', Validators.required],
+      attack: [0, Validators.required],
+      image: ['', Validators.required],
+      defense: [0, Validators.required],
+      hp: [10],
+      type: ['Water']
     })
   }
 
   ngOnInit(): void {
   }
 
-  showRange($event: any) {
-
+  ngOnChanges() {
+    if (this.selectedPokemon) {
+      this.pokemonForm.patchValue(this.selectedPokemon)
+    }
   }
 
-  hideRange() {
+  create(): any {
+    if (!this.pokemonForm.valid) {
+      return;
+    }
+    if (this.selectedPokemon) {
+      let pokemonResquest: PokemonResquest = this.pokemonForm.value
+      pokemonResquest.id = this.selectedPokemon.id
+      this.newPokemonEmmiter.emit({
+        type: 'edit',
+        data: pokemonResquest
+      })
+    } else {
+      this.newPokemonEmmiter.emit({
+        type: 'create',
+        data: this.pokemonForm.value as PokemonResquest
+      })
+    }
+  }
 
+  cancel() {
+    this.newPokemonEmmiter.emit({
+      type: 'cancel'
+    })
   }
 }

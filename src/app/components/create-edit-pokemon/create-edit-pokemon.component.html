@@ -5,33 +5,38 @@
   <form [formGroup]="pokemonForm">
     <div class="row-2">
       <div class="input-field">
-        <label for="nombre">Nombre: </label>
-        <input type="text" formControlName="nombre" id="nombre" name="nombre"/>
+        <label for="name">Nombre: </label>
+        <input type="text" formControlName="name" id="name" name="name"/>
       </div>
       <div class="input-field">
-        <label for="ataque">Ataque: </label>
+        <label for="attack">Ataque: </label>
         <div class="tooltip">
-          <span class="tooltiptext">{{pokemonForm.get('ataque')?.value}}</span>
+          <span class="tooltiptext">{{pokemonForm.get('attack')?.value}}</span>
           <span>0</span>
-          <input type="range" formControlName="ataque" id="ataque" name="ataque" min="0" max="100"/>
+          <input type="range" formControlName="attack" id="attack" name="attack" min="0" max="100"/>
           <span>100</span>
         </div>
       </div>
     </div>
     <div class="row-2">
       <div class="input-field">
-        <label for="imagen">Imagen: </label>
-        <input type="text" formControlName="imagen" id="imagen" name="imagen"/>
+        <label for="image">Imagen: </label>
+        <input type="text" formControlName="image" id="image" name="image"/>
+        <img [src]="pokemonForm.get('image')?.value" alt="{{pokemonForm.get('name')?.value}}" *ngIf="selectedPokemon"/>
       </div>
       <div class="input-field">
-        <label for="defensa">Defensa: </label>
+        <label for="defense">Defensa: </label>
         <div class="tooltip">
-          <span class="tooltiptext">{{pokemonForm.get('defensa')?.value}}</span>
+          <span class="tooltiptext">{{pokemonForm.get('defense')?.value}}</span>
           <span>0</span>
-          <input type="range" formControlName="defensa" id="defensa" name="defensa" min="0" max="100"/>
+          <input type="range" formControlName="defense" id="defense" name="defense" min="0" max="100"/>
           <span>100</span>
         </div>
       </div>
+    </div>
+    <div class="row-2">
+      <button class="btn" (click)="cancel()"><span class="material-icons">add</span>Cancelar</button>
+      <button class="btn" (click)="create()"><span class="material-icons">add</span>Guardar</button>
     </div>
     {{pokemonForm.value | json}}
   </form>

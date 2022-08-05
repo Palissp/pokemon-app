@@ -25,7 +25,7 @@ table td {
 }
 
 table th {
-  width: auto;
+  width: 100px;
 }
 
 table td {
@@ -55,7 +55,7 @@ table td {
 
 .actions_options {
   white-space: nowrap;
-  color: rgb(175, 16, 215, 1);
+  color: var(--primary-color);
 }
 
 .actions_options > * {
@@ -63,7 +63,11 @@ table td {
 }
 
 .actions_options > *:hover {
-  color: rgb(175, 16, 215, .7);
+  color: var(--blur-color);
   cursor: pointer;
 }
 
+.no-data {
+  text-align: center;
+  font-size: 1em;
+}

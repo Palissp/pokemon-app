@@ -1,22 +1,38 @@
-  <table>
-    <tr>
-      <th>Nombre</th>
-      <th>Imagen</th>
-      <th>Ataque</th>
-      <th>Defensa</th>
-      <th class="actions_header">Acciones</th>
-    </tr>
-    <tr *ngFor="let pokemon of arrayOfPokemons">
-      <td>{{pokemon.name}}</td>
-      <td>
-        <img class="img-auto"
-             src="{{pokemon.image}}">
-      </td>
-      <td>{{pokemon.attack}}</td>
-      <td>{{pokemon.defense}}</td>
-      <td class="actions_td actions_options">
-        <span class="material-icons">border_color</span>
-        <span class="material-icons">delete_outline</span>
-      </td>
-    </tr>
-  </table>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Imagen</th>
+    <th>Ataque</th>
+    <th>Defensa</th>
+    <th class="actions_header">Acciones</th>
+  </tr>
+  <tr *ngFor="let pokemon of pokemonsTable">
+    <td>{{pokemon.name}}</td>
+    <td>
+      <img class="img-auto" alt="{{'Imagen de ' + pokemon.name}}"
+           src="{{pokemon.image}}">
+    </td>
+    <td>{{pokemon.attack}}</td>
+    <td>{{pokemon.defense}}</td>
+    <td class="actions_td actions_options">
+      <span class="material-icons" (click)="editPokemon(pokemon)">border_color</span>
+      <span class="material-icons" (click)="deletePokemon(pokemon)">delete_outline</span>
+    </td>
+  </tr>
+  <tr *ngIf="pokemonsTable.length == 0">
+    <td class="no-data" colspan="9999" style="">
+      <span class="material-icons" style="color: gray; font-size: 50px; margin-top: 20px;">info</span>
+      <p>No hay información disponible</p>
+    </td>
+  </tr>
+</table>
+<div>
+  <app-paginator *ngIf="arrayOfPokemons.length > 0"
+                 [data]="arrayOfPokemons"
+                 [rows-per-page]="[5,10,15,20]"
+                 [initial-row]="5"
+                 (current-data-page)="getData($event)"
+                 (current-row-page)="getCurrentRowPage($event)"
+                 (current-page)="getCurrentPage($event)"
+  ></app-paginator>
+</div>

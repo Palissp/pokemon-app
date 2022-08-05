@@ -21,6 +21,12 @@ input:focus {
   border: 1px solid #d10e28;
 }
 
+/*GLOBAL COLORS*/
+:root {
+  --primary-color: rgba(126, 63, 253, 0.8);
+  --blur-color: rgba(126, 63, 253, 0.49);
+}
+
 /* Tooltip container */
 .tooltip {
   position: relative;
@@ -53,4 +59,22 @@ input:focus {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+/*Buttons*/
+.btn {
+  width: auto;
+  height: 40px;
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 6px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  padding-right: 18px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--blur-color);
 }

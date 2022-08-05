@@ -33,21 +33,3 @@
   justify-content: space-between;
   width: inherit;
 }
-
-/*Buttons*/
-.btn {
-  width: auto;
-  height: 40px;
-  background-color: rgba(118, 51, 188, 0.8);
-  border: 0;
-  border-radius: 6px;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  padding-right: 18px;
-}
-
-.btn:hover {
-  cursor: pointer;
-  background-color: rgba(140, 58, 225, 0.8);
-}
