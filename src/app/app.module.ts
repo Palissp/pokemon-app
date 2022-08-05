@@ -7,20 +7,25 @@ import { HomeComponent } from './pages/home/home.component';
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { CreateEditPokemonComponent } from './components/create-edit-pokemon/create-edit-pokemon.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {PokemonService} from "./services/pokemon.service";
+import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CustomTableComponent,
-    CreateEditPokemonComponent
+    CreateEditPokemonComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

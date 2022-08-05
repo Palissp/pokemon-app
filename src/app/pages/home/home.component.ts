@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Pokemon} from "../../models/pokemon";
+import {PokemonService} from "../../services/pokemon.service";
 
 @Component({
   selector: 'app-home',
@@ -6,11 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public arrayOfPokemons: Array<any> = [];
+  public arrayOfPokemons: Pokemon[] = [];
+  public blockPage: boolean = false;
 
-  constructor() { }
+  constructor(private _pokemonService: PokemonService) {
+
+  }
 
   ngOnInit(): void {
+    this.blockPage = true
+    this._pokemonService.getPokemons().subscribe({
+      next: (data) => {
+        this.blockPage = false;
+        this.arrayOfPokemons = data;
+      },
+      error: (err) => {
+        this.blockPage = false;
+        console.log(err);
+      }
+    })
   }
 
 }
