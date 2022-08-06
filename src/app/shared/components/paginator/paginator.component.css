@@ -1,3 +1,13 @@
+btn {
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  max-height: fit-content !important;
+  max-width: fit-content !important;
+  height: fit-content;
+  outline: none;
+}
+
 .paginator {
   display: flex;
   width: 100%;
@@ -10,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem
 }
 
 .pages {
@@ -18,12 +29,8 @@
   user-select: none;
 }
 
-btn {
-  border: none;
-  cursor: pointer;
-  width: fit-content;
-  max-height: fit-content !important;
-  max-width: fit-content !important;
-  height: fit-content;
-  outline: none;
+.pagination {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 2px solid var(--primary-color);
 }

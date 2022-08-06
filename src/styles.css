@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   margin: 0;
   background: #f5f5fd;
+  scroll-behavior: smooth;
 }
 
 input[type=text], input[type=number], input[type=email], input[type=password] {
@@ -30,30 +31,25 @@ input:focus {
 /* Tooltip container */
 .tooltip {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
   background-color: rgba(90, 87, 87, 0.3);
   color: #fff;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
   /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
-}
-
-
-.tooltip .tooltiptext {
-  width: 120px;
+  width: fit-content;
   bottom: 100%;
   left: 50%;
-  margin-left: -60px;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -70,8 +66,9 @@ input:focus {
   border-radius: 6px;
   color: #FFFFFF;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding-right: 18px;
+  padding: 1rem;
 }
 
 .btn:hover {

@@ -34,7 +34,6 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.initPaginator();
     if (changes.hasOwnProperty('data') && !changes['data'].firstChange) {
       this.data = changes['data'].currentValue;
       this.initPaginator();

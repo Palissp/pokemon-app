@@ -32,7 +32,14 @@ export class CreateEditPokemonComponent implements OnInit {
   ngOnChanges() {
     if (this.selectedPokemon) {
       this.pokemonForm.patchValue(this.selectedPokemon)
+    } else {
+      this.pokemonForm.reset();
     }
+    document.getElementById("createEditPokemonComponent")?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "start"
+    });
   }
 
   create(): any {

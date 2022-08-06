@@ -1,6 +1,6 @@
 <div class="paginator">
   <div>
-    <select class="h-8 w-16 bg-mono-10 t-body-2 text-black select-none" [(ngModel)]="initialRow"
+    <select class="pagination" [(ngModel)]="initialRow"
             (change)="changeRowPerPage($event)">
       <option *ngFor="let row of rowsPerPage" [value]="row">{{row}}</option>
     </select>
@@ -12,7 +12,7 @@
         <span class="material-icons">navigate_before</span>
       </div>
     </button>
-    <div class="pages items-center bg-mono-10 px-2 rounded h-8 select-none">
+    <div class="">
       <span class="t-body-2">{{currentPage}}/{{totalPagesInformation}}</span>
     </div>
     <button class="btn" (click)="nextPage()"
