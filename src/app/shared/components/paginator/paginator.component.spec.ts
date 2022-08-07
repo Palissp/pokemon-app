@@ -20,4 +20,17 @@ describe('PaginatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('paginator Functions', () => {
+    it('should emit currentPage', () => {
+      const currentPageEmit = spyOn(component.currentPageEmit, 'emit');
+      component.nextPage();
+      expect(currentPageEmit).toHaveBeenCalledWith(2);
+    })
+    it('should emit previousPage', () => {
+      const currentPageEmit = spyOn(component.currentPageEmit, 'emit');
+      component.previousPage();
+      expect(currentPageEmit).toHaveBeenCalledWith(0);
+    })
+  })
 });

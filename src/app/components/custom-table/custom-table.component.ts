@@ -40,35 +40,38 @@ export class CustomTableComponent implements OnInit, OnDestroy {
 
 
   public deleteHandler(pokemon: Pokemon): void {
-    if(!pokemon){
-      return alert('No se puede borrar un Pokémon que no existe');
-    }
     if (confirm('¿Estás seguro de que quieres borrar este Pokémon?')) {
       this.deletePokemon(pokemon);
     }
   }
 
-  public deletePokemon(pokemon: Pokemon): void {
+  public deletePokemon(pokemon: Pokemon): Promise<boolean> {
     this.blockPageEmitter.emit(true);
-    this.subscriptions.add(
-      this._pokemonService.borrarPokemon(pokemon.id).subscribe({
-        next: (data) => {
-          if (data.success) {
-            if (!data.success) {
-              this.blockPageEmitter.emit(false);
-              return alert(data.data)
+    return new Promise((resolve) => {
+      this.subscriptions.add(
+        this._pokemonService.borrarPokemon(pokemon.id).subscribe({
+          next: (data) => {
+            if (data.success) {
+              if (!data.success) {
+                this.blockPageEmitter.emit(false);
+                alert(data.data)
+                resolve(true);
+              }
             }
+            this.blockPageEmitter.emit(false);
+            alert('Pokemon borrado correctamente')
+            this.showAddPokemonChange.emit(false);
+            resolve(true);
+            this.arrayOfPokemons = this.arrayOfPokemons.filter(pokemonArray => pokemonArray.id !== pokemon.id);
+          },
+          error: (err) => {
+            alert('Error al borrar el pokemon')
+            this.blockPageEmitter.emit(false);
+            resolve(false);
           }
-          this.blockPageEmitter.emit(false);
-          alert('Pokemon borrado correctamente')
-          this.showAddPokemonChange.emit(false);
-          this.arrayOfPokemons = this.arrayOfPokemons.filter(pokemonArray => pokemonArray.id !== pokemon.id);
-        },
-        error: (err) => {
-          alert('Error al borrar el pokemon')
-          this.blockPageEmitter.emit(false);
-        }
-      }))
+        }))
+    })
+
   }
 
   public editPokemon(pokemon: Pokemon): void {

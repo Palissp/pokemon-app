@@ -26,8 +26,8 @@ export class CreateEditPokemonComponent implements OnInit {
 
   ngOnInit(): void {
     this.setFormValues();
-    if(this.selectedPokemon) {
-      this.pokemonForm.patchValue(this.selectedPokemon)
+    if (this.selectedPokemon) {
+      this.patchValues(this.selectedPokemon)
     }
   }
 
@@ -43,7 +43,7 @@ export class CreateEditPokemonComponent implements OnInit {
       return
     }
     if (this.selectedPokemon) {
-      this.pokemonForm.patchValue(this.selectedPokemon)
+      this.patchValues(this.selectedPokemon)
     } else {
       this.setFormValues();
     }
@@ -54,7 +54,7 @@ export class CreateEditPokemonComponent implements OnInit {
     });
   }
 
-  private setFormValues(): void {
+  public setFormValues(): void {
     this.pokemonForm = this._fb.group({
       name: ['', Validators.required],
       attack: [0, Validators.required],
@@ -83,6 +83,9 @@ export class CreateEditPokemonComponent implements OnInit {
     }
   }
 
+  public patchValues(pokemon: PokemonResquest): void {
+    this.pokemonForm.patchValue(pokemon);
+  }
 
   public createPokemon(pokemonData: PokemonResquest): void {
     this.blockPageEmitter.emit(true);

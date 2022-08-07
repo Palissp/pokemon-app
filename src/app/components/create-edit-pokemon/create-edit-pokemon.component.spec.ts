@@ -95,4 +95,45 @@ describe('CreateEditPokemonComponent', () => {
       expect(component.updatePokemon).toHaveBeenCalled();
     })
   })
+  describe('ngOnInit', () => {
+    it('should call Patchvalue if selectedPokemon is selected', () => {
+      spyOn(component, 'patchValues');
+      component.selectedPokemon = {
+        name: 'Pikachu',
+        attack: 1,
+        type: 'electric',
+        image: 'https://img.pokemondb.net/artwork/pikachu.jpg',
+        defense: 1,
+        hp: 1,
+      }
+      component.ngOnInit();
+      expect(component.patchValues).toHaveBeenCalled();
+    })
+  })
+  describe('ngOnChanges', () => {
+    it('should patchValues if selectedPokemon has data', () => {
+      component.selectedPokemon = {
+        name: 'Pikachu',
+        attack: 1,
+        type: 'electric',
+        image: 'https://img.pokemondb.net/artwork/pikachu.jpg',
+        defense: 1,
+        hp: 1,
+        idAuthor: 1,
+        id: 1
+      }
+      spyOn(component, 'patchValues');
+      spyOn(component, 'setFormValues');
+      component.ngOnChanges();
+      expect(component.patchValues).toHaveBeenCalled();
+      expect(component.setFormValues).not.toHaveBeenCalled();
+    });
+    it('should setFormValues if selectedPokemon has no data', () => {
+      spyOn(component, 'patchValues');
+      spyOn(component, 'setFormValues');
+      component.ngOnChanges();
+      expect(component.patchValues).not.toHaveBeenCalled();
+      expect(component.setFormValues).toHaveBeenCalled();
+    })
+  })
 })
