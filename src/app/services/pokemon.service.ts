@@ -30,4 +30,12 @@ export class PokemonService {
   public borrarPokemon(id: number): Observable<serviceResponse> {
     return this._http.delete<serviceResponse>(this.actualizarBorrarPokemonUrl + id);
   }
+
+  public getPokemonById(id: number): Observable<Pokemon> {
+    return this._http.get<Pokemon>(this.actualizarBorrarPokemonUrl + id);
+  }
+
+  public getByNRegistros(n: number): Observable<Pokemon[]> {
+    return this._http.get<Pokemon[]>(this.getPostPokemonUrl + n + '?idAuthor=1');
+  }
 }

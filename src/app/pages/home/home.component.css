@@ -6,14 +6,11 @@
   align-items: start;
   margin-left: 2vw;
   margin-top: 5vh;
-  width: 60%;
-}
-
-.home-container > * {
-  margin-bottom: 3vh;
+  width: 100%;
 }
 
 .title {
   font-size: 1.1rem;
-  font-weight: lighter;
+  color: #838D99;
+  font-weight: bold;
 }
