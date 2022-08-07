@@ -6,9 +6,14 @@
   align-items: start;
   margin-left: 2vw;
   margin-top: 5vh;
-  width: 600px;
+  width: 60%;
 }
 
 .home-container > * {
   margin-bottom: 3vh;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: lighter;
 }

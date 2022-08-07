@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CustomEvent, Pokemon} from "../../models/pokemon";
 import {PokemonService} from "../../services/pokemon.service";
 import {Subscription} from "rxjs";
@@ -9,64 +9,66 @@ import {Subscription} from "rxjs";
   styleUrls: ['./custom-table.component.css']
 })
 export class CustomTableComponent implements OnInit, OnDestroy {
+  @Input()
   public arrayOfPokemons: Pokemon[] = [];
   @Output()
   public onCreateEditPokemon: EventEmitter<Pokemon | undefined> = new EventEmitter<Pokemon | undefined>();
   @Output()
   public blockPageEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Input()
+  public showAddPokemon?: boolean;
+  @Output()
+  public showAddPokemonChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   public tableIndex: number = 0;
   public currentRowPage: number = 0;
   public pokemonsTable: Pokemon[] = [];
   public dataTemp: any = [];
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private _pokemonService: PokemonService) {
+  constructor(private _pokemonService: PokemonService,
+              private cd: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.getPokemons();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
-  private getPokemons(): void {
-    this.blockPageEmitter.emit(true);
-    this._pokemonService.getPokemons().subscribe({
-      next: (data) => {
-        this.blockPageEmitter.emit(false);
-        this.arrayOfPokemons = data;
-      },
-      error: (err) => {
-        this.blockPageEmitter.emit(false);
-        console.log(err);
-      }
-    })
+
+  public deleteHandler(pokemon: Pokemon): void {
+    if(!pokemon){
+      return alert('No se puede borrar un Pokémon que no existe');
+    }
+    if (confirm('¿Estás seguro de que quieres borrar este Pokémon?')) {
+      this.deletePokemon(pokemon);
+    }
   }
 
   public deletePokemon(pokemon: Pokemon): void {
-    if (confirm('¿Estás seguro de que quieres borrar este Pokémon?')) {
-      this.blockPageEmitter.emit(true);
-      this.subscriptions.add(
-        this._pokemonService.borrarPokemon(pokemon.id).subscribe({
-          next: (data) => {
-            if (data.success) {
-              if (!data.success) {
-                this.blockPageEmitter.emit(false);
-                return alert(data.data)
-              }
+    this.blockPageEmitter.emit(true);
+    this.subscriptions.add(
+      this._pokemonService.borrarPokemon(pokemon.id).subscribe({
+        next: (data) => {
+          if (data.success) {
+            if (!data.success) {
+              this.blockPageEmitter.emit(false);
+              return alert(data.data)
             }
-            this.blockPageEmitter.emit(false);
-            alert('Pokemon borrado correctamente')
-            this.arrayOfPokemons = this.arrayOfPokemons.filter(pokemonArray => pokemonArray.id !== pokemon.id);
-          },
-          error: (err) => {
-            alert('Error al borrar el pokemon')
-            this.blockPageEmitter.emit(false);
           }
-        }))
-    }
+          this.blockPageEmitter.emit(false);
+          alert('Pokemon borrado correctamente')
+          this.showAddPokemonChange.emit(false);
+          this.arrayOfPokemons = this.arrayOfPokemons.filter(pokemonArray => pokemonArray.id !== pokemon.id);
+        },
+        error: (err) => {
+          alert('Error al borrar el pokemon')
+          this.blockPageEmitter.emit(false);
+        }
+      }))
   }
 
   public editPokemon(pokemon: Pokemon): void {
@@ -78,11 +80,11 @@ export class CustomTableComponent implements OnInit, OnDestroy {
   }
 
   public getData($event: any): void {
-    this.pokemonsTable = []
     this.pokemonsTable = $event;
+    this.cd.detectChanges();
   }
 
-  getCurrentRowPage($event: number) {
+  public getCurrentRowPage($event: number): void {
     if (this.tableIndex == 1) {
       this.currentRowPage = 0;
     } else {
@@ -90,11 +92,11 @@ export class CustomTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  getCurrentPage($event: number) {
+  public getCurrentPage($event: number): void {
     this.tableIndex = $event;
   }
 
-  public findPokemons(input: Event): void {
+  public findPokemon(input: Event): void {
     const target = input.target as HTMLInputElement;
     let data = target.value;
     data = data.toLowerCase();
@@ -112,6 +114,4 @@ export class CustomTableComponent implements OnInit, OnDestroy {
       this.pokemonsTable = this.dataTemp;
     }
   }
-
-
 }

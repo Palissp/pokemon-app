@@ -8,7 +8,7 @@ import { CustomTableComponent } from './components/custom-table/custom-table.com
 import { CreateEditPokemonComponent } from './components/create-edit-pokemon/create-edit-pokemon.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PokemonService} from "./services/pokemon.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
 
 @NgModule({

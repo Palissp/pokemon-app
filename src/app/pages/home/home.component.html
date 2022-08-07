@@ -1,8 +1,13 @@
 <div class="home-container">
-  <span><b>Listado de Pokemon</b></span>
-  <app-custom-table (blockPageEmitter)="blockPage = $event" (onCreateEditPokemon)="createEditHandler($event)"></app-custom-table>
+  <span class="title">Listado de Pokemon</span>
+  <app-custom-table (blockPageEmitter)="blockPage = $event"
+                    (onCreateEditPokemon)="createEditHandler($event)"
+                    [arrayOfPokemons]="arrayOfPokemons"
+                    [(showAddPokemon)]="showAddPokemon"></app-custom-table>
   <app-create-edit-pokemon *ngIf="showAddPokemon"
                            [selectedPokemon]="selectedPokemon"
+                           (blockPageEmitter)="blockPage = $event"
+                           (actionFinishedEmitter)="eventHandler($event)"
                            id="createEditPokemonComponent"></app-create-edit-pokemon>
 </div>
 <app-block-page *ngIf="blockPage"></app-block-page>

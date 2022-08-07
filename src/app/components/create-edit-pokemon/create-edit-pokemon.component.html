@@ -2,7 +2,7 @@
   <div class="card-title">
     <span>{{selectedPokemon ? 'Editar' : 'Nuevo'}} Pokemon</span>
   </div>
-  <form [formGroup]="pokemonForm">
+  <form class="form-group" [formGroup]="pokemonForm">
     <div class="row-2">
       <div class="input-field">
         <label for="name">Nombre: </label>
@@ -36,7 +36,7 @@
     </div>
     <div class="options">
       <button class="btn" (click)="cancel()"><span class="material-icons">add</span>Cancelar</button>
-      <button class="btn" (click)="create()"><span class="material-icons">add</span>Guardar</button>
+      <button class="btn" (click)="formHandler()"><span class="material-icons">add</span>Guardar</button>
     </div>
     {{pokemonForm.value | json}}
   </form>

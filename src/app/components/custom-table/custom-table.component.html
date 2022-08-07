@@ -1,5 +1,5 @@
 <div class="options_header">
-  <input class="input-search" type="text" placeholder="Buscar" (input)="findPokemons($event)">
+  <input class="input-search" type="text" placeholder="Buscar" (input)="findPokemon($event)">
   <button class="btn" (click)="addPokemon()"><span class="material-icons">add</span>Nuevo</button>
 </div>
 <table>
@@ -8,7 +8,7 @@
     <th>Imagen</th>
     <th>Ataque</th>
     <th>Defensa</th>
-    <th class="actions_header">Acciones</th>
+    <th>Acciones</th>
   </tr>
   <tr *ngFor="let pokemon of pokemonsTable">
     <td>{{pokemon.name}}</td>
@@ -18,13 +18,13 @@
     </td>
     <td>{{pokemon.attack}}</td>
     <td>{{pokemon.defense}}</td>
-    <td class="actions_td actions_options">
+    <td class="actions_options">
       <span class="material-icons" (click)="editPokemon(pokemon)">border_color</span>
-      <span class="material-icons" (click)="deletePokemon(pokemon)">delete_outline</span>
+      <span class="material-icons" (click)="deleteHandler(pokemon)">delete_outline</span>
     </td>
   </tr>
   <tr *ngIf="pokemonsTable.length == 0">
-    <td class="no-data" colspan="9999" style="">
+    <td class="no-data" colspan="5">
       <span class="material-icons" style="color: gray; font-size: 50px; margin-top: 20px;">info</span>
       <p>No hay información disponible</p>
     </td>

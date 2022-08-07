@@ -15,8 +15,8 @@ export class PokemonService {
   constructor(private _http: HttpClient) {
   }
 
-  public getPokemons(): Observable<any> {
-    return this._http.get(this.getPostPokemonUrl);
+  public getPokemons(): Observable<Pokemon[]> {
+    return this._http.get<Pokemon[]>(this.getPostPokemonUrl);
   }
 
   public postPokemon(pokemon: PokemonResquest): Observable<Pokemon & serviceResponse> {
@@ -27,7 +27,7 @@ export class PokemonService {
     return this._http.put<Pokemon & serviceResponse>(this.actualizarBorrarPokemonUrl + id, pokemon);
   }
 
-  public borrarPokemon(id: number): Observable<Pokemon & serviceResponse> {
-    return this._http.delete<Pokemon & serviceResponse>(this.actualizarBorrarPokemonUrl + id);
+  public borrarPokemon(id: number): Observable<serviceResponse> {
+    return this._http.delete<serviceResponse>(this.actualizarBorrarPokemonUrl + id);
   }
 }

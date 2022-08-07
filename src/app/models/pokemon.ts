@@ -17,7 +17,7 @@ export interface PokemonResquest {
   hp: number;
   image: string;
   type: string;
-  idAuthor: number;
+  idAuthor?: number;
 }
 
 export interface CustomEvent<T> {

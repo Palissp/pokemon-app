@@ -1,5 +1,15 @@
+.container {
+  border: 1px solid rgba(202, 202, 202, 0.75);
+  background-color: white;
+  width: 100%;
+}
+
+.container .card-title {
+  padding: 2rem;
+}
+
 .card-title {
-  width: inherit;
+  width: 100%;
   text-align: center;
   font-size: 1rem;
 }
@@ -7,7 +17,7 @@
 .row-2 {
   display: grid;
   margin: 10px 0;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 100%));
 }
 
 .row-2 .input-field {
