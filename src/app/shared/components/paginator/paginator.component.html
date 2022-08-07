@@ -6,7 +6,7 @@
     </select>
   </div>
   <div class="paginator-controls">
-    <button class="btn" (click)="previousPage()"
+    <button class="btn-pagination" (click)="previousPage()"
             [disabled]="currentPage <= 1 || totalPagesInformation <= 1">
       <div>
         <span class="material-icons">navigate_before</span>
@@ -15,7 +15,7 @@
     <div class="">
       <span class="t-body-2">{{currentPage}}/{{totalPagesInformation}}</span>
     </div>
-    <button class="btn" (click)="nextPage()"
+    <button class="btn-pagination" (click)="nextPage()"
             [disabled]="currentPage === totalPagesInformation || totalPagesInformation <= 1">
       <span class="material-icons">navigate_next</span>
     </button>

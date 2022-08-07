@@ -4,7 +4,9 @@
                     (onCreateEditPokemon)="createEditHandler($event)"
                     [arrayOfPokemons]="arrayOfPokemons"
                     [(showAddPokemon)]="showAddPokemon"></app-custom-table>
-  <app-create-edit-pokemon *ngIf="showAddPokemon"
+  <div style="height: 24px"></div>
+  <app-create-edit-pokemon style="width: 936px;"
+    *ngIf="showAddPokemon"
                            [selectedPokemon]="selectedPokemon"
                            (blockPageEmitter)="blockPage = $event"
                            (actionFinishedEmitter)="eventHandler($event)"

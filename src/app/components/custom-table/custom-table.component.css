@@ -1,13 +1,12 @@
 table {
   display: grid;
   border-collapse: collapse;
-  min-width: 100%;
   grid-template-columns:
-    minmax(150px, 20%)
-    minmax(150px, 20%)
-    minmax(150px, 20%)
-    minmax(150px, 20%)
-    minmax(150px, 20%);
+    minmax(50px, 20%)
+    minmax(50px, 20%)
+    minmax(50px, 20%)
+    minmax(50px, 20%)
+    minmax(50px, 20%);
 }
 
 thead,

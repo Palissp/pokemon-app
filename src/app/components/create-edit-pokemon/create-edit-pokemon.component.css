@@ -16,7 +16,7 @@
 
 .row-2 {
   display: grid;
-  margin: 10px 0;
+  margin: 16px;
   grid-template-columns: repeat(2, minmax(0, 100%));
 }
 
@@ -29,6 +29,7 @@
 div.input-field label {
   display: inline-block;
   text-align: right;
+  padding-right: 8px;
 }
 
 .options {

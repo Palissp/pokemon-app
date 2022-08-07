@@ -27,6 +27,7 @@ input:focus {
 /*GLOBAL COLORS*/
 :root {
   --primary-color: rgba(76, 63, 253, 0.8);
+  --secondary-color: #D9D9D9;
   --blur-color: rgba(76, 63, 253, 0.49);
 }
 
@@ -41,7 +42,7 @@ input:focus {
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  background-color: rgba(153, 146, 146, 0.3);
+  background-color: rgba(0,0,0,0.4);
   color: #fff;
   text-align: center;
   padding: 5px 0;
@@ -73,6 +74,18 @@ input:focus {
   padding: 1rem;
 }
 
+.btn-pagination {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  border: 0;
+  border-radius: 6px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-disabled {
   background-color: var(--blur-color);
   color: rgba(255, 255, 255, 0.66);
@@ -86,26 +99,25 @@ input:focus {
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   input[type='range'] {
-    overflow: hidden;
-    width: 80px;
-    -webkit-appearance: none;
+    -webkit-appearance:none;
+    border-radius:4px;
     background-color: var(--primary-color);
   }
 
   input[type='range']::-webkit-slider-runnable-track {
-    height: 10px;
+    height: 6px;
+    border-radius:4px;
     -webkit-appearance: none;
     color: var(--primary-color);
-    margin-top: -1px;
   }
 
   input[type='range']::-webkit-slider-thumb {
-    width: 10px;
+    transform: translate(0, -5px);
+    width: 16px;
     -webkit-appearance: none;
-    height: 10px;
-    cursor: ew-resize;
-    background: #434343;
-    box-shadow: -80px 0 0 80px var(--primary-color);
+    height: 16px;
+    border-radius:8px;
+    background: var(--primary-color);
   }
 
 }
